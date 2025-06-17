@@ -1,0 +1,141 @@
+
+<!DOCTYPE html>
+{% load static %}
+<html lang="fr" class="scroll-smooth">
+   <head>
+     <meta charset="UTF-8" />
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Accueil | Emploi Dev</title>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+     <script src=" {% static 'css/app.css' %}"></script>
+     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+     <script src="{% static 'js/style.js' %}"></script>
+    </head>
+
+    <body class="bg-slate-50 dark:bg-navy-900">
+       <!-- Page Wrapper -->
+        <div id="root" class="min-h-screen flex flex-col">
+          <!-- Navbar -->
+            {% for message in messages %}
+              <strong><i style="color: red; text-align: center;">{{message}}</i></strong>
+            {% endfor %}  
+            <nav class="bg-white dark:bg-navy-800 shadow-md px-4 py-3 md:px-6 flex justify-between items-center sticky top-0 z-50">
+             <div class="text-xl font-bold text-navy-700 dark:text-white"> <a href="{% url 'home' %}">EmploiDev</a></div>
+      
+              <!-- Desktop Navigation -->
+                <div class="hidden md:flex space-x-4 items-center">
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'créer_profile' %}" class="text-sm font-medium text-slate-700 hover:text-primary dark:text-slate-300 dark:hover:text-accent transition-colors">Créer_Profile</a>
+                        <a href="{% url 'créer_un_offre' %}" class="text-sm font-medium text-slate-700 hover:text-primary dark:text-slate-300 dark:hover:text-accent transition-colors">Créer_un_offre</a>
+                        <a href="{% url 'offres' %}" class="text-sm font-medium text-slate-700 hover:text-primary dark:text-slate-300 dark:hover:text-accent transition-colors">Offres</a>
+                        <a href="{% url 'profiles' %}" class="text-sm font-medium text-slate-700 hover:text-primary dark:text-slate-300 dark:hover:text-accent transition-colors">Candidats</a>
+                       <a href="{% url 'confirm_logout' %}" class="bg-primary px-4 py-2 rounded-lg hover:bg-gray-100 transition-colors font-medium text-transparent bg-clip-text bg-gradient-to-r from-red-600 via-pink-500 to-violet-600">Se déconnecter</a>
+                    {% else %}
+                        <a href="{% url 'offres' %}" class="text-sm font-medium text-slate-700 hover:text-primary dark:text-slate-300 dark:hover:text-accent transition-colors">Offres</a>
+                        <a href="{% url 'profiles' %}" class="text-sm font-medium text-slate-700 hover:text-primary dark:text-slate-300 dark:hover:text-accent transition-colors">Candidats</a>
+                        <a href="{% url 'register' %}" class="text-sm font-medium text-slate-700 hover:text-primary dark:text-slate-300 dark:hover:text-accent transition-colors">S'inscrire</a>
+                        <a href="{% url 'login' %}" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary/90 dark:bg-accent dark:hover:bg-accent/90 transition-colors font-medium">Se connecter</a>
+                    {% endif %}
+                    <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-navy-700">
+                        <svg class="w-5 h-5 text-gray-600 dark:text-yellow-400 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                           <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                        </svg>
+                        <svg class="w-5 h-5 text-white hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                           <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 
+                            1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 
+                            1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1
+                            1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd" fill-rule="evenodd"></path>
+                        </svg>
+                    </button>
+                </div>
+      
+               <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center space-x-3">
+                    <button id="theme-toggle-mobile" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-navy-700">
+                      <i class="fas fa-moon text-gray-600 dark:text-yellow-400 dark:hidden"></i>
+                      <i class="fas fa-sun text-white hidden dark:block"></i>
+                    </button>
+                    <button id="mobile-menu-button" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-navy-700">
+                      <i class="fas fa-bars text-gray-600 dark:text-gray-300"></i>
+                    </button>
+                </div>              
+            </nav>
+            <!-- Mobile Menu -->
+                <div id="mobile-menu" class="mobile-menu bg-white dark:bg-navy-800 md:hidden">
+                    <div class="px-4 py-3 flex flex-col space-y-3">
+                        {% if user.is_authenticated %}
+                          <a href="{% url 'créer_profile' %}" class="text-sm font-medium text-slate-700 hover:text-primary dark:text-slate-300 dark:hover:text-accent transition-colors">Créer_Profile</a>
+                          <a href="{% url 'créer_un_offre' %}" class="text-sm font-medium text-slate-700 hover:text-primary dark:text-slate-300 dark:hover:text-accent transition-colors">Créer_un_offre</a>
+                          <a href="{% url 'offres' %}" class="text-sm font-medium text-slate-700 hover:text-primary dark:text-slate-300 dark:hover:text-accent transition-colors">Offres</a>
+                          <a href="{% url 'profiles' %}" class="text-sm font-medium text-slate-700 hover:text-primary dark:text-slate-300 dark:hover:text-accent transition-colors py-2">Candidats</a>
+                          <a href="{% url 'confirm_logout' %}" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary/90 dark:bg-accent dark:hover:bg-accent/90 transition-colors font-medium text-center">Se déconnecter</a>
+                        {% else %}
+                          <a href="{% url 'offres' %}" class="text-sm font-medium text-slate-700 hover:text-primary dark:text-slate-300 dark:hover:text-accent transition-colors">Offres</a>
+                          <a href="{% url 'profiles' %}" class="text-sm font-medium text-slate-700 hover:text-primary dark:text-slate-300 dark:hover:text-accent transition-colors py-2">Candidats</a>
+                          <a href="{% url 'register' %}" class="text-sm font-medium text-slate-700 hover:text-primary dark:text-slate-300 dark:hover:text-accent transition-colors py-2">S'inscrire</a>
+                          <a href="{% url 'login' %}" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary/90 dark:bg-accent dark:hover:bg-accent/90 transition-colors font-medium text-center">Se connecter</a>
+                        {% endif %}
+                    </div>
+                </div>
+            {% block content %} 
+            {% endblock %}
+
+            <!-- Footer -->
+            <footer class="bg-navy-800 text-white py-8">
+                <div class="max-w-7xl mx-auto px-4">
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                        <div>
+                            <h3 class="text-lg font-bold mb-4">EmploiDev</h3>
+                            <p class="text-slate-300 text-sm">La plateforme de recrutement spécialisée pour les développeurs en Afrique francophone.</p>
+                        </div>
+          
+                        <div>
+                            <h4 class="font-semibold mb-4">Navigation</h4>
+                            <ul class="space-y-2 text-slate-300 text-sm">
+                                <li><a href="#" class="hover:text-white transition-colors">Accueil</a></li>
+                                <li><a href="#" class="hover:text-white transition-colors">Candidats</a></li>
+                                <li><a href="#" class="hover:text-white transition-colors">Offres d'emploi</a></li>
+                                <li><a href="#" class="hover:text-white transition-colors">Entreprises</a></li>
+                            </ul>
+                        </div>
+          
+                        <div>
+                            <h4 class="font-semibold mb-4">Ressources</h4>
+                            <ul class="space-y-2 text-slate-300 text-sm">
+                                <li><a href="#" class="hover:text-white transition-colors">Blog</a></li>
+                                <li><a href="#" class="hover:text-white transition-colors">Conseils carrière</a></li>
+                                <li><a href="#" class="hover:text-white transition-colors">FAQ</a></li>
+                                <li><a href="#" class="hover:text-white transition-colors">Contact</a></li>
+                            </ul>
+                        </div>
+          
+                        <div>
+                           <h4 class="font-semibold mb-4">Légal</h4>
+                           <ul class="space-y-2 text-slate-300 text-sm">
+                                <li><a href="#" class="hover:text-white transition-colors">Mentions légales</a></li>
+                                <li><a href="#" class="hover:text-white transition-colors">Politique de confidentialité</a></li>
+                                <li><a href="#" class="hover:text-white transition-colors">Conditions d'utilisation</a></li>
+                            </ul>
+                        </div>
+                    </div>
+        
+                    <div class="border-t border-navy-700 mt-8 pt-6 flex flex-col md:flex-row justify-between items-center">
+                        <p class="text-slate-400 text-sm mb-4 md:mb-0">&copy; 2025 EmploiDev - Tous droits réservés</p>
+                        <div class="flex space-x-4">
+                            <a href="#" class="text-slate-400 hover:text-white transition-colors">
+                              <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="text-slate-400 hover:text-white transition-colors">
+                              <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="text-slate-400 hover:text-white transition-colors">
+                               <i class="fab fa-linkedin-in"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+        <script src="{% static 'js/home.js' %}"></script>
+    </body>
+</html>

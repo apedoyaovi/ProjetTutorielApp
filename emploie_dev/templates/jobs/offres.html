@@ -1,0 +1,380 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<main class="flex-grow py-8">
+      <div class="max-w-7xl mx-auto px-4">
+        <!-- En-tête avec titre et description -->
+        <div class="text-center mb-8">
+          <h1 class="text-2xl md:text-3xl font-bold text-gray-800 dark:text-white mb-3">Offres d'Emploi</h1>
+          <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+            Trouvez l'opportunité parfaite parmi nos <span class="text-primary dark:text-accent font-medium">127 offres</span> actuellement disponibles
+          </p>
+        </div>
+        
+        <!-- Contrôles de filtre et tri -->
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
+          <!-- Bouton de filtre mobile -->
+          <button id="filter-toggle" class="filter-toggle md:hidden flex items-center gap-2 bg-gray-100 dark:bg-navy-700 px-4 py-2 rounded-lg">
+            <i class="fas fa-filter"></i>
+            <span>Filtres</span>
+          </button>
+          
+          <!-- Sélecteur de tri -->
+          <div class="flex items-center gap-3">
+            <span class="text-gray-700 dark:text-gray-300 text-sm">Trier par :</span>
+            <div class="flex flex-wrap gap-2">
+              <button class="sort-btn bg-gray-100 dark:bg-navy-700 px-3 py-1 rounded-lg text-sm active" data-sort="date-new">Date (récent)</button>
+              <button class="sort-btn bg-gray-100 dark:bg-navy-700 px-3 py-1 rounded-lg text-sm" data-sort="salary-high">Salaire (élevé)</button>
+              <button class="sort-btn bg-gray-100 dark:bg-navy-700 px-3 py-1 rounded-lg text-sm" data-sort="popular">Populaire</button>
+            </div>
+          </div>
+          
+          <!-- Recherche -->
+          <div class="relative w-full md:w-64">
+            <input type="text" placeholder="Rechercher une offre..." class="w-full bg-white dark:bg-navy-700 border border-gray-300 dark:border-navy-600 rounded-lg pl-10 pr-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-accent">
+            <i class="fas fa-search absolute left-3 top-3 text-gray-400 dark:text-gray-500"></i>
+          </div>
+        </div>
+        
+        <div class="flex flex-col md:flex-row gap-6">
+          <!-- Barre latérale de filtres -->
+          <div id="filter-section" class="filter-section w-full md:w-64 bg-white dark:bg-navy-700 rounded-xl shadow-md p-5 self-start md:sticky md:top-24">
+            <div class="flex justify-between items-center mb-4">
+              <h2 class="font-bold text-gray-900 dark:text-white">Filtres</h2>
+              <button class="text-sm text-primary dark:text-accent">Réinitialiser</button>
+            </div>
+            
+            <!-- Catégories -->
+            <div class="mb-6">
+              <h3 class="font-semibold text-gray-900 dark:text-white mb-3">Catégories</h3>
+              <div class="space-y-2">
+                <div class="flex items-center">
+                  <input type="checkbox" id="cat-dev" class="mr-2 rounded text-primary dark:text-accent focus:ring-primary dark:focus:ring-accent">
+                  <label for="cat-dev" class="text-gray-700 dark:text-gray-300 text-sm cursor-pointer">Développement (42)</label>
+                </div>
+                <div class="flex items-center">
+                  <input type="checkbox" id="cat-design" class="mr-2 rounded text-primary dark:text-accent focus:ring-primary dark:focus:ring-accent">
+                  <label for="cat-design" class="text-gray-700 dark:text-gray-300 text-sm cursor-pointer">Design (18)</label>
+                </div>
+                <div class="flex items-center">
+                  <input type="checkbox" id="cat-marketing" class="mr-2 rounded text-primary dark:text-accent focus:ring-primary dark:focus:ring-accent">
+                  <label for="cat-marketing" class="text-gray-700 dark:text-gray-300 text-sm cursor-pointer">Marketing (15)</label>
+                </div>
+                <div class="flex items-center">
+                  <input type="checkbox" id="cat-data" class="mr-2 rounded text-primary dark:text-accent focus:ring-primary dark:focus:ring-accent">
+                  <label for="cat-data" class="text-gray-700 dark:text-gray-300 text-sm cursor-pointer">Data Science (9)</label>
+                </div>
+                <div class="flex items-center">
+                  <input type="checkbox" id="cat-devops" class="mr-2 rounded text-primary dark:text-accent focus:ring-primary dark:focus:ring-accent">
+                  <label for="cat-devops" class="text-gray-700 dark:text-gray-300 text-sm cursor-pointer">DevOps (7)</label>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Type de contrat -->
+            <div class="mb-6">
+              <h3 class="font-semibold text-gray-900 dark:text-white mb-3">Type de contrat</h3>
+              <div class="space-y-2">
+                <div class="flex items-center">
+                  <input type="checkbox" id="type-cdi" class="mr-2 rounded text-primary dark:text-accent focus:ring-primary dark:focus:ring-accent">
+                  <label for="type-cdi" class="text-gray-700 dark:text-gray-300 text-sm cursor-pointer">CDI (58)</label>
+                </div>
+                <div class="flex items-center">
+                  <input type="checkbox" id="type-cdd" class="mr-2 rounded text-primary dark:text-accent focus:ring-primary dark:focus:ring-accent">
+                  <label for="type-cdd" class="text-gray-700 dark:text-gray-300 text-sm cursor-pointer">CDD (24)</label>
+                </div>
+                <div class="flex items-center">
+                  <input type="checkbox" id="type-stage" class="mr-2 rounded text-primary dark:text-accent focus:ring-primary dark:focus:ring-accent">
+                  <label for="type-stage" class="text-gray-700 dark:text-gray-300 text-sm cursor-pointer">Stage (17)</label>
+                </div>
+                <div class="flex items-center">
+                  <input type="checkbox" id="type-freelance" class="mr-2 rounded text-primary dark:text-accent focus:ring-primary dark:focus:ring-accent">
+                  <label for="type-freelance" class="text-gray-700 dark:text-gray-300 text-sm cursor-pointer">Freelance (28)</label>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Localisation -->
+            <div class="mb-6">
+              <h3 class="font-semibold text-gray-900 dark:text-white mb-3">Localisation</h3>
+              <div class="space-y-2">
+                <div class="flex items-center">
+                  <input type="checkbox" id="loc-lome" class="mr-2 rounded text-primary dark:text-accent focus:ring-primary dark:focus:ring-accent">
+                  <label for="loc-lome" class="text-gray-700 dark:text-gray-300 text-sm cursor-pointer">Lomé (32)</label>
+                </div>
+                <div class="flex items-center">
+                  <input type="checkbox" id="loc-abidjan" class="mr-2 rounded text-primary dark:text-accent focus:ring-primary dark:focus:ring-accent">
+                  <label for="loc-abidjan" class="text-gray-700 dark:text-gray-300 text-sm cursor-pointer">Abidjan (28)</label>
+                </div>
+                <div class="flex items-center">
+                  <input type="checkbox" id="loc-dakar" class="mr-2 rounded text-primary dark:text-accent focus:ring-primary dark:focus:ring-accent">
+                  <label for="loc-dakar" class="text-gray-700 dark:text-gray-300 text-sm cursor-pointer">Dakar (19)</label>
+                </div>
+                <div class="flex items-center">
+                  <input type="checkbox" id="loc-remote" class="mr-2 rounded text-primary dark:text-accent focus:ring-primary dark:focus:ring-accent">
+                  <label for="loc-remote" class="text-gray-700 dark:text-gray-300 text-sm cursor-pointer">Télétravail (48)</label>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Salaire -->
+            <div class="mb-4">
+              <h3 class="font-semibold text-gray-900 dark:text-white mb-3">Salaire (FCFA/mois)</h3>
+              <div class="px-1">
+                <input type="range" min="0" max="1000000" value="300000" class="w-full accent-primary dark:accent-accent">
+                <div class="flex justify-between text-xs text-gray-600 dark:text-gray-400 mt-1">
+                  <span>0</span>
+                  <span>1.000.000</span>
+                </div>
+              </div>
+              <div class="text-center mt-3">
+                <span class="text-sm bg-gray-100 dark:bg-navy-800 px-3 py-1 rounded-lg">Min. 300.000 FCFA</span>
+              </div>
+            </div>
+            
+            <!-- Bouton Appliquer -->
+            <button class="w-full bg-primary hover:bg-primary/90 dark:bg-accent dark:hover:bg-accent/90 text-white py-2 rounded-lg font-medium mt-4">
+              Appliquer les filtres
+            </button>
+          </div>
+          
+          <!-- Liste des offres -->
+          <div class="flex-1">
+            <!-- Tags de catégorie -->
+            <div class="flex flex-wrap gap-2 mb-6">
+              <span class="category-tag bg-gray-100 dark:bg-navy-700 px-3 py-1 rounded-lg text-sm cursor-pointer active">Toutes</span>
+              <span class="category-tag bg-gray-100 dark:bg-navy-700 px-3 py-1 rounded-lg text-sm cursor-pointer">Développement</span>
+              <span class="category-tag bg-gray-100 dark:bg-navy-700 px-3 py-1 rounded-lg text-sm cursor-pointer">Design</span>
+              <span class="category-tag bg-gray-100 dark:bg-navy-700 px-3 py-1 rounded-lg text-sm cursor-pointer">Marketing</span>
+              <span class="category-tag bg-gray-100 dark:bg-navy-700 px-3 py-1 rounded-lg text-sm cursor-pointer">Data</span>
+              <span class="category-tag bg-gray-100 dark:bg-navy-700 px-3 py-1 rounded-lg text-sm cursor-pointer">DevOps</span>
+            </div>
+            
+            <!-- Statistiques de résultats -->
+            <div class="bg-gray-50 dark:bg-navy-800 rounded-lg p-4 mb-6">
+              <div class="flex flex-wrap justify-between items-center">
+                <div>
+                  <span class="text-gray-700 dark:text-gray-300">Affichage de <span class="font-medium">12</span> offres sur <span class="font-medium">127</span></span>
+                </div>
+                <div class="flex items-center gap-2 text-sm">
+                  <span class="text-gray-700 dark:text-gray-300">Trier par:</span>
+                  <select class="bg-white dark:bg-navy-700 border border-gray-300 dark:border-navy-600 rounded-lg px-3 py-1 focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-accent">
+                    <option>Date (récent)</option>
+                    <option>Salaire (élevé)</option>
+                    <option>Popularité</option>
+                    <option>Date (ancien)</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Grille d'offres -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <!-- Offre 1 -->
+              <div class="job-card bg-white dark:bg-navy-700 rounded-xl p-6 border border-gray-100 dark:border-navy-600">
+                <div class="flex justify-between items-start mb-4">
+                  <div>
+                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-1">Développeur Fullstack</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-300 mb-2">DigitalTech Togo</p>
+                  </div>
+                  <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">Nouveau</span>
+                </div>
+                <div class="flex items-center text-sm text-gray-600 dark:text-gray-300 mb-4">
+                  <i class="fas fa-map-marker-alt mr-2"></i>
+                  <span>Lomé, Togo</span>
+                </div>
+                <div class="flex items-center text-sm text-gray-600 dark:text-gray-300 mb-4">
+                  <i class="fas fa-money-bill-wave mr-2"></i>
+                  <span>300.000 - 450.000 FCFA/mois</span>
+                </div>
+                <div class="flex flex-wrap gap-2 mb-5">
+                  <span class="tag bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300">React</span>
+                  <span class="tag bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300">Node.js</span>
+                  <span class="tag bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300">MongoDB</span>
+                </div>
+                <div class="flex justify-between items-center">
+                  <span class="text-xs text-gray-500 dark:text-gray-400">Publiée: 12/06/2025</span>
+                  <a href="#" class="text-primary dark:text-accent font-semibold text-sm flex items-center">
+                    Voir l'offre
+                    <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                  </a>
+                </div>
+              </div>
+              
+              <!-- Offre 2 -->
+              <div class="job-card bg-white dark:bg-navy-700 rounded-xl p-6 border border-gray-100 dark:border-navy-600">
+                <div class="flex justify-between items-start mb-4">
+                  <div>
+                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-1">UX/UI Designer</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-300 mb-2">Creative Solutions</p>
+                  </div>
+                  <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-blue-900 dark:text-blue-300">Urgent</span>
+                </div>
+                <div class="flex items-center text-sm text-gray-600 dark:text-gray-300 mb-4">
+                  <i class="fas fa-map-marker-alt mr-2"></i>
+                  <span>Abidjan, Côte d'Ivoire</span>
+                </div>
+                <div class="flex items-center text-sm text-gray-600 dark:text-gray-300 mb-4">
+                  <i class="fas fa-money-bill-wave mr-2"></i>
+                  <span>250.000 - 400.000 FCFA/mois</span>
+                </div>
+                <div class="flex flex-wrap gap-2 mb-5">
+                  <span class="tag bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300">Figma</span>
+                  <span class="tag bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300">Adobe XD</span>
+                  <span class="tag bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300">Prototypage</span>
+                </div>
+                <div class="flex justify-between items-center">
+                  <span class="text-xs text-gray-500 dark:text-gray-400">Publiée: 10/06/2025</span>
+                  <a href="#" class="text-primary dark:text-accent font-semibold text-sm flex items-center">
+                    Voir l'offre
+                    <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                  </a>
+                </div>
+              </div>
+              
+              <!-- Offre 3 -->
+              <div class="job-card bg-white dark:bg-navy-700 rounded-xl p-6 border border-gray-100 dark:border-navy-600">
+                <div class="flex justify-between items-start mb-4">
+                  <div>
+                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-1">Data Scientist</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-300 mb-2">Analytics Africa</p>
+                  </div>
+                  <span class="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-yellow-900 dark:text-yellow-300">Remote</span>
+                </div>
+                <div class="flex items-center text-sm text-gray-600 dark:text-gray-300 mb-4">
+                  <i class="fas fa-map-marker-alt mr-2"></i>
+                  <span>Remote</span>
+                </div>
+                <div class="flex items-center text-sm text-gray-600 dark:text-gray-300 mb-4">
+                  <i class="fas fa-money-bill-wave mr-2"></i>
+                  <span>500.000 - 750.000 FCFA/mois</span>
+                </div>
+                <div class="flex flex-wrap gap-2 mb-5">
+                  <span class="tag bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300">Python</span>
+                  <span class="tag bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300">Machine Learning</span>
+                  <span class="tag bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300">TensorFlow</span>
+                </div>
+                <div class="flex justify-between items-center">
+                  <span class="text-xs text-gray-500 dark:text-gray-400">Publiée: 09/06/2025</span>
+                  <a href="#" class="text-primary dark:text-accent font-semibold text-sm flex items-center">
+                    Voir l'offre
+                    <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                  </a>
+                </div>
+              </div>
+              
+              <!-- Offre 4 -->
+              <div class="job-card bg-white dark:bg-navy-700 rounded-xl p-6 border border-gray-100 dark:border-navy-600">
+                <div class="flex justify-between items-start mb-4">
+                  <div>
+                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-1">DevOps Engineer</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-300 mb-2">Cloud Solutions Ltd</p>
+                  </div>
+                  <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-blue-900 dark:text-blue-300">Urgent</span>
+                </div>
+                <div class="flex items-center text-sm text-gray-600 dark:text-gray-300 mb-4">
+                  <i class="fas fa-map-marker-alt mr-2"></i>
+                  <span>Dakar, Sénégal</span>
+                </div>
+                <div class="flex items-center text-sm text-gray-600 dark:text-gray-300 mb-4">
+                  <i class="fas fa-money-bill-wave mr-2"></i>
+                  <span>450.000 - 600.000 FCFA/mois</span>
+                </div>
+                <div class="flex flex-wrap gap-2 mb-5">
+                  <span class="tag bg-indigo-100 text-indigo-800 dark:bg-indigo-900/30 dark:text-indigo-300">Docker</span>
+                  <span class="tag bg-indigo-100 text-indigo-800 dark:bg-indigo-900/30 dark:text-indigo-300">Kubernetes</span>
+                  <span class="tag bg-indigo-100 text-indigo-800 dark:bg-indigo-900/30 dark:text-indigo-300">AWS</span>
+                </div>
+                <div class="flex justify-between items-center">
+                  <span class="text-xs text-gray-500 dark:text-gray-400">Publiée: 08/06/2025</span>
+                  <a href="#" class="text-primary dark:text-accent font-semibold text-sm flex items-center">
+                    Voir l'offre
+                    <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                  </a>
+                </div>
+              </div>
+              
+              <!-- Offre 5 -->
+              <div class="job-card bg-white dark:bg-navy-700 rounded-xl p-6 border border-gray-100 dark:border-navy-600">
+                <div class="flex justify-between items-start mb-4">
+                  <div>
+                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-1">Mobile Developer</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-300 mb-2">App Innovators</p>
+                  </div>
+                  <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">Nouveau</span>
+                </div>
+                <div class="flex items-center text-sm text-gray-600 dark:text-gray-300 mb-4">
+                  <i class="fas fa-map-marker-alt mr-2"></i>
+                  <span>Lomé, Togo</span>
+                </div>
+                <div class="flex items-center text-sm text-gray-600 dark:text-gray-300 mb-4">
+                  <i class="fas fa-money-bill-wave mr-2"></i>
+                  <span>350.000 - 500.000 FCFA/mois</span>
+                </div>
+                <div class="flex flex-wrap gap-2 mb-5">
+                  <span class="tag bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300">Flutter</span>
+                  <span class="tag bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300">React Native</span>
+                  <span class="tag bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300">iOS</span>
+                </div>
+                <div class="flex justify-between items-center">
+                  <span class="text-xs text-gray-500 dark:text-gray-400">Publiée: 07/06/2025</span>
+                  <a href="#" class="text-primary dark:text-accent font-semibold text-sm flex items-center">
+                    Voir l'offre
+                    <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                  </a>
+                </div>
+              </div>
+              
+              <!-- Offre 6 -->
+              <div class="job-card bg-white dark:bg-navy-700 rounded-xl p-6 border border-gray-100 dark:border-navy-600">
+                <div class="flex justify-between items-start mb-4">
+                  <div>
+                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-1">Product Manager</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-300 mb-2">Tech Leaders Group</p>
+                  </div>
+                  <span class="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-yellow-900 dark:text-yellow-300">Remote</span>
+                </div>
+                <div class="flex items-center text-sm text-gray-600 dark:text-gray-300 mb-4">
+                  <i class="fas fa-map-marker-alt mr-2"></i>
+                  <span>Remote</span>
+                </div>
+                <div class="flex items-center text-sm text-gray-600 dark:text-gray-300 mb-4">
+                  <i class="fas fa-money-bill-wave mr-2"></i>
+                  <span>600.000 - 850.000 FCFA/mois</span>
+                </div>
+                <div class="flex flex-wrap gap-2 mb-5">
+                  <span class="tag bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300">Product Strategy</span>
+                  <span class="tag bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300">Agile</span>
+                  <span class="tag bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300">Scrum</span>
+                </div>
+                <div class="flex justify-between items-center">
+                  <span class="text-xs text-gray-500 dark:text-gray-400">Publiée: 05/06/2025</span>
+                  <a href="#" class="text-primary dark:text-accent font-semibold text-sm flex items-center">
+                    Voir l'offre
+                    <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Pagination -->
+            <div class="flex justify-center items-center gap-2 mt-10">
+              <button class="pagination-btn bg-gray-100 dark:bg-navy-700 w-10 h-10 rounded-full disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                <i class="fas fa-chevron-left"></i>
+              </button>
+              <button class="pagination-btn bg-primary text-white w-10 h-10 rounded-full dark:bg-accent">1</button>
+              <button class="pagination-btn bg-gray-100 dark:bg-navy-700 w-10 h-10 rounded-full">2</button>
+              <button class="pagination-btn bg-gray-100 dark:bg-navy-700 w-10 h-10 rounded-full">3</button>
+              <span class="px-2 text-gray-500 dark:text-gray-400">...</span>
+              <button class="pagination-btn bg-gray-100 dark:bg-navy-700 w-10 h-10 rounded-full">10</button>
+              <button class="pagination-btn bg-gray-100 dark:bg-navy-700 w-10 h-10 rounded-full">
+                <i class="fas fa-chevron-right"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+{% endblock %}

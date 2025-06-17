@@ -1,0 +1,235 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <!-- SECTION HERO -->
+    <section class="hero-gradient text-white py-16 md:py-24 text-center">
+      <div class="max-w-4xl mx-auto px-4">
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight">Bienvenue sur la plateforme de recrutement moderne</h1>
+        <p class="text-lg md:text-xl max-w-2xl mx-auto mb-8 opacity-90">Trouvez le bon profil ou l'emploi idéal, rapidement et efficacement.</p>
+        <div class="flex flex-col sm:flex-row justify-center gap-4">
+          <a href="#candidats" class="bg-white text-indigo-700 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition shadow-md">Explorer les profils</a>
+          <a href="#offres" class="bg-indigo-800 text-white px-6 py-3 rounded-full font-semibold hover:bg-indigo-900 transition shadow-md">Voir les offres</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="flex-grow">
+      <!-- Candidats Section -->
+      <section id="candidats" class="py-16 bg-gray-50 dark:bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4">
+          <div class="text-center mb-12">
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-800 dark:text-white mb-4">Profils de Candidats</h2>
+            <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">Découvrez des développeurs talentueux prêts à rejoindre votre équipe</p>
+          </div>
+          
+          <!-- Grid des profils -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <!-- Profil 1 -->
+            <div class="profile-card bg-white dark:bg-navy-700 shadow rounded-lg overflow-hidden p-5 hover:shadow-lg">
+              <div class="flex flex-col items-center">
+                <div class="relative mb-4">
+                  <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Konnor Guzman" class="rounded-full w-20 h-20 object-cover border-2 border-white shadow">
+                  <span class="absolute bottom-0 right-0 w-5 h-5 bg-green-500 rounded-full border-2 border-white"></span>
+                </div>
+                <h3 class="text-lg font-semibold text-slate-800 dark:text-white">Konnor Guzman</h3>
+                <p class="text-sm text-slate-600 dark:text-slate-300 mb-3">Senior Developer</p>
+                <div class="flex flex-wrap gap-2 justify-center">
+                  <span class="tag bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300">PHP</span>
+                  <span class="tag bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300">Node.js</span>
+                  <span class="tag bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300">ReactJS</span>
+                </div>
+                <div class="mt-5 flex gap-2 w-full justify-center">
+                  <a href="{% url 'détail_profile' %}" class="bg-primary text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-primary/90 transition-colors w-full text-center">Profil détail</a>
+                  <a href="#" class="bg-slate-100 text-slate-800 dark:bg-navy-600 dark:text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-slate-200 dark:hover:bg-navy-500 transition-colors w-full text-center">Message</a>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Profil 2 -->
+            <div class="profile-card bg-white dark:bg-navy-700 shadow rounded-lg overflow-hidden p-5 hover:shadow-lg">
+              <div class="flex flex-col items-center">
+                <div class="relative mb-4">
+                  <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sophie Lambert" class="rounded-full w-20 h-20 object-cover border-2 border-white shadow">
+                  <span class="absolute bottom-0 right-0 w-5 h-5 bg-green-500 rounded-full border-2 border-white"></span>
+                </div>
+                <h3 class="text-lg font-semibold text-slate-800 dark:text-white">Sophie Lambert</h3>
+                <p class="text-sm text-slate-600 dark:text-slate-300 mb-3">UX/UI Designer</p>
+                <div class="flex flex-wrap gap-2 justify-center">
+                  <span class="tag bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300">Figma</span>
+                  <span class="tag bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300">Adobe XD</span>
+                  <span class="tag bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300">UI Design</span>
+                </div>
+                <div class="mt-5 flex gap-2 w-full justify-center">
+                  <a href="#" class="bg-primary text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-primary/90 transition-colors w-full text-center">Profil</a>
+                  <a href="#" class="bg-slate-100 text-slate-800 dark:bg-navy-600 dark:text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-slate-200 dark:hover:bg-navy-500 transition-colors w-full text-center">Message</a>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Profil 3 -->
+            <div class="profile-card bg-white dark:bg-navy-700 shadow rounded-lg overflow-hidden p-5 hover:shadow-lg">
+              <div class="flex flex-col items-center">
+                <div class="relative mb-4">
+                  <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="Thomas Dubois" class="rounded-full w-20 h-20 object-cover border-2 border-white shadow">
+                  <span class="absolute bottom-0 right-0 w-5 h-5 bg-yellow-500 rounded-full border-2 border-white"></span>
+                </div>
+                <h3 class="text-lg font-semibold text-slate-800 dark:text-white">Thomas Dubois</h3>
+                <p class="text-sm text-slate-600 dark:text-slate-300 mb-3">DevOps Engineer</p>
+                <div class="flex flex-wrap gap-2 justify-center">
+                  <span class="tag bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300">Docker</span>
+                  <span class="tag bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300">Kubernetes</span>
+                  <span class="tag bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300">AWS</span>
+                </div>
+                <div class="mt-5 flex gap-2 w-full justify-center">
+                  <a href="{#}" class="bg-primary text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-primary/90 transition-colors w-full text-center">Profil</a>
+                  <a href="#" class="bg-slate-100 text-slate-800 dark:bg-navy-600 dark:text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-slate-200 dark:hover:bg-navy-500 transition-colors w-full text-center">Message</a>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Profil 4 -->
+            <div class="profile-card bg-white dark:bg-navy-700 shadow rounded-lg overflow-hidden p-5 hover:shadow-lg">
+              <div class="flex flex-col items-center">
+                <div class="relative mb-4">
+                  <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Camille Martin" class="rounded-full w-20 h-20 object-cover border-2 border-white shadow">
+                  <span class="absolute bottom-0 right-0 w-5 h-5 bg-green-500 rounded-full border-2 border-white"></span>
+                </div>
+                <h3 class="text-lg font-semibold text-slate-800 dark:text-white">Camille Martin</h3>
+                <p class="text-sm text-slate-600 dark:text-slate-300 mb-3">Mobile Developer</p>
+                <div class="flex flex-wrap gap-2 justify-center">
+                  <span class="tag bg-indigo-100 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-300">Flutter</span>
+                  <span class="tag bg-indigo-100 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-300">React Native</span>
+                  <span class="tag bg-indigo-100 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-300">Swift</span>
+                </div>
+                <div class="mt-5 flex gap-2 w-full justify-center">
+                  <a href="#" class="bg-primary text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-primary/90 transition-colors w-full text-center">Profil</a>
+                  <a href="#" class="bg-slate-100 text-slate-800 dark:bg-navy-600 dark:text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-slate-200 dark:hover:bg-navy-500 transition-colors w-full text-center">Message</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Bouton Voir Plus -->
+          <div class="mt-12 text-center">
+            <a href="{% url 'profiles' %}" class="inline-block bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary/90 dark:bg-accent dark:hover:bg-accent/90 transition-colors font-medium shadow-md">
+              Voir plus de profils
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Offres d'emploi Section -->
+      <section id="offres" class="py-16 bg-white dark:bg-gray-800">
+        <div class="max-w-7xl mx-auto px-4">
+          <div class="text-center mb-12">
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-800 dark:text-white mb-3">Offres d'emploi récentes</h2>
+            <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">Trouvez l'opportunité qui correspond à vos compétences et aspirations</p>
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Offre 1 -->
+            <div class="job-card bg-gray-50 dark:bg-gray-700 rounded-xl p-6 border border-gray-100 dark:border-gray-600">
+              <div class="flex justify-between items-start mb-4">
+                <div>
+                  <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-1">Développeur Fullstack</h3>
+                  <p class="text-sm text-gray-600 dark:text-gray-300 mb-2">DigitalTech Togo</p>
+                </div>
+                <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">Nouveau</span>
+              </div>
+              <div class="flex items-center text-sm text-gray-600 dark:text-gray-300 mb-4">
+                <i class="fas fa-map-marker-alt mr-2"></i>
+                <span>Lomé, Togo</span>
+              </div>
+              <div class="flex items-center text-sm text-gray-600 dark:text-gray-300 mb-4">
+                <i class="fas fa-money-bill-wave mr-2"></i>
+                <span>300.000 - 450.000 FCFA/mois</span>
+              </div>
+              <div class="flex flex-wrap gap-2 mb-5">
+                <span class="tag bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300">React</span>
+                <span class="tag bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300">Node.js</span>
+                <span class="tag bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300">MongoDB</span>
+              </div>
+              <a href="#" class="text-primary dark:text-accent font-semibold text-sm flex items-center">
+                Voir l'offre
+                <i class="fas fa-arrow-right ml-2 text-xs"></i>
+              </a>
+            </div>
+            
+            <!-- Offre 2 -->
+            <div class="job-card bg-gray-50 dark:bg-gray-700 rounded-xl p-6 border border-gray-100 dark:border-gray-600">
+              <div class="flex justify-between items-start mb-4">
+                <div>
+                  <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-1">UX/UI Designer</h3>
+                  <p class="text-sm text-gray-600 dark:text-gray-300 mb-2">Creative Solutions</p>
+                </div>
+                <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-blue-900 dark:text-blue-300">Urgent</span>
+              </div>
+              <div class="flex items-center text-sm text-gray-600 dark:text-gray-300 mb-4">
+                <i class="fas fa-map-marker-alt mr-2"></i>
+                <span>Abidjan, Côte d'Ivoire</span>
+              </div>
+              <div class="flex items-center text-sm text-gray-600 dark:text-gray-300 mb-4">
+                <i class="fas fa-money-bill-wave mr-2"></i>
+                <span>250.000 - 400.000 FCFA/mois</span>
+              </div>
+              <div class="flex flex-wrap gap-2 mb-5">
+                <span class="tag bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300">Figma</span>
+                <span class="tag bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300">Adobe XD</span>
+                <span class="tag bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300">Prototypage</span>
+              </div>
+              <a href="#" class="text-primary dark:text-accent font-semibold text-sm flex items-center">
+                Voir l'offre
+                <i class="fas fa-arrow-right ml-2 text-xs"></i>
+              </a>
+            </div>
+            
+            <!-- Offre 3 -->
+            <div class="job-card bg-gray-50 dark:bg-gray-700 rounded-xl p-6 border border-gray-100 dark:border-gray-600">
+              <div class="flex justify-between items-start mb-4">
+                <div>
+                  <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-1">Data Scientist</h3>
+                  <p class="text-sm text-gray-600 dark:text-gray-300 mb-2">Analytics Africa</p>
+                </div>
+                <span class="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-yellow-900 dark:text-yellow-300">Remote</span>
+              </div>
+              <div class="flex items-center text-sm text-gray-600 dark:text-gray-300 mb-4">
+                <i class="fas fa-map-marker-alt mr-2"></i>
+                <span>Remote</span>
+              </div>
+              <div class="flex items-center text-sm text-gray-600 dark:text-gray-300 mb-4">
+                <i class="fas fa-money-bill-wave mr-2"></i>
+                <span>500.000 - 750.000 FCFA/mois</span>
+              </div>
+              <div class="flex flex-wrap gap-2 mb-5">
+                <span class="tag bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300">Python</span>
+                <span class="tag bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300">Machine Learning</span>
+                <span class="tag bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300">TensorFlow</span>
+              </div>
+              <a href="#" class="text-primary dark:text-accent font-semibold text-sm flex items-center">
+                Voir l'offre
+                <i class="fas fa-arrow-right ml-2 text-xs"></i>
+              </a>
+            </div>
+          </div>
+          
+          <!-- Bouton Voir Plus -->
+          <div class="mt-12 text-center">
+            <a href="#" class="inline-block bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 transition-colors font-medium shadow-md">
+              Voir plus d'offres
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+  <script src="{% static 'js/home.js' %}"></script>
+  <script>
+    setTimeout(function() {
+        const messages = document.querySelectorAll('.fixed > div');
+        messages.forEach(m => m.remove());
+    }, 3000);
+  </script>
+
+
+{% endblock %}

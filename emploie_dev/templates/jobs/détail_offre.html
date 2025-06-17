@@ -1,0 +1,277 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+ <!-- Page de détail de l'offre -->
+    <main class="flex-grow py-8">
+      <div class="job-detail-section px-4">
+        <!-- Bouton retour -->
+        <div class="mb-6">
+          <a href="#" class="back-button inline-flex items-center text-primary dark:text-accent font-medium hover:text-primary/80 dark:hover:text-accent/80">
+            <i class="fas fa-arrow-left mr-2"></i>
+            Retour aux offres
+          </a>
+        </div>
+        
+        <!-- En-tête de l'offre -->
+        <div class="bg-white dark:bg-navy-700 rounded-xl shadow-md p-6 mb-8">
+          <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-6">
+            <div class="flex-1">
+              <div class="flex items-center justify-between mb-4">
+                <h1 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">Développeur Fullstack Senior</h1>
+                <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-1 rounded-full dark:bg-green-900 dark:text-green-300">Nouveau</span>
+              </div>
+              
+              <div class="flex items-center mb-4">
+                <div class="bg-gray-100 dark:bg-navy-600 w-16 h-16 rounded-lg flex items-center justify-center mr-4">
+                  <img src="https://via.placeholder.com/50" alt="DigitalTech Togo" class="w-10 h-10">
+                </div>
+                <div>
+                  <h2 class="text-lg font-semibold text-gray-900 dark:text-white">DigitalTech Togo</h2>
+                  <div class="flex flex-wrap items-center gap-3 mt-2">
+                    <div class="flex items-center text-sm text-gray-600 dark:text-gray-300">
+                      <i class="fas fa-map-marker-alt mr-2"></i>
+                      <span>Lomé, Togo</span>
+                    </div>
+                    <div class="flex items-center text-sm text-gray-600 dark:text-gray-300">
+                      <i class="fas fa-clock mr-2"></i>
+                      <span>Temps plein</span>
+                    </div>
+                    <div class="flex items-center text-sm text-gray-600 dark:text-gray-300">
+                      <i class="fas fa-money-bill-wave mr-2"></i>
+                      <span>300.000 - 450.000 FCFA/mois</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span class="tag bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300">React</span>
+                <span class="tag bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300">Node.js</span>
+                <span class="tag bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300">TypeScript</span>
+                <span class="tag bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300">MongoDB</span>
+                <span class="tag bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300">AWS</span>
+              </div>
+              
+              <div class="flex flex-wrap gap-3">
+                <a href="#" class="apply-button bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-lg font-semibold shadow-md">
+                  <i class="fas fa-paper-plane mr-2"></i>Postuler maintenant
+                </a>
+                <button class="bg-gray-100 hover:bg-gray-200 dark:bg-navy-600 dark:hover:bg-navy-500 text-gray-800 dark:text-white px-4 py-3 rounded-lg font-medium">
+                  <i class="far fa-bookmark mr-2"></i>Sauvegarder
+                </button>
+                <button class="bg-gray-100 hover:bg-gray-200 dark:bg-navy-600 dark:hover:bg-navy-500 text-gray-800 dark:text-white px-4 py-3 rounded-lg font-medium">
+                  <i class="fas fa-share-alt mr-2"></i>Partager
+                </button>
+              </div>
+            </div>
+            
+            <div class="md:w-1/4">
+              <div class="bg-gray-50 dark:bg-navy-600 rounded-lg p-4 border border-gray-200 dark:border-navy-500">
+                <h3 class="font-semibold text-gray-900 dark:text-white mb-3">Détails de l'offre</h3>
+                <ul class="space-y-3 text-sm text-gray-700 dark:text-gray-300">
+                  <li class="flex items-start">
+                    <i class="fas fa-calendar-alt mt-1 mr-3 text-primary dark:text-accent"></i>
+                    <span>Publiée: <span class="font-medium">Il y a 2 jours</span></span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-file-contract mt-1 mr-3 text-primary dark:text-accent"></i>
+                    <span>Type: <span class="font-medium">CDI</span></span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-briefcase mt-1 mr-3 text-primary dark:text-accent"></i>
+                    <span>Expérience: <span class="font-medium">5+ ans</span></span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-graduation-cap mt-1 mr-3 text-primary dark:text-accent"></i>
+                    <span>Éducation: <span class="font-medium">Bac+5 en informatique</span></span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-users mt-1 mr-3 text-primary dark:text-accent"></i>
+                    <span>Candidatures: <span class="font-medium">12</span></span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Contenu détaillé -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div class="lg:col-span-2">
+            <!-- Description du poste -->
+            <div class="bg-white dark:bg-navy-700 rounded-xl shadow-md p-6 mb-8">
+              <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Description du poste</h2>
+              <p class="text-gray-700 dark:text-gray-300 mb-6">
+                DigitalTech Togo recherche un Développeur Fullstack Senior pour rejoindre notre équipe dynamique et contribuer au développement de nos solutions innovantes. Vous participerez à la conception, au développement et au déploiement d'applications web modernes qui transforment l'expérience utilisateur.
+              </p>
+              
+              <h3 class="font-semibold text-gray-900 dark:text-white mb-3">Missions et responsabilités</h3>
+              <ul class="list-disc pl-5 space-y-2 text-gray-700 dark:text-gray-300 mb-6">
+                <li>Concevoir et développer des applications web fullstack avec React et Node.js</li>
+                <li>Collaborer avec les équipes produit et design pour créer des solutions innovantes</li>
+                <li>Optimiser les performances des applications et résoudre les problèmes techniques</li>
+                <li>Participer aux revues de code et maintenir des standards de qualité élevés</li>
+                <li>Mentorer les développeurs juniors et partager vos connaissances</li>
+                <li>Mettre en place des processus CI/CD et assurer le déploiement continu</li>
+              </ul>
+              
+              <h3 class="font-semibold text-gray-900 dark:text-white mb-3">Profil recherché</h3>
+              <ul class="list-disc pl-5 space-y-2 text-gray-700 dark:text-gray-300">
+                <li>Diplôme d'ingénieur ou équivalent en informatique</li>
+                <li>5+ ans d'expérience en développement web fullstack</li>
+                <li>Maîtrise de JavaScript/TypeScript, React, Node.js et MongoDB</li>
+                <li>Expérience avec les services AWS et l'infrastructure cloud</li>
+                <li>Connaissance des bonnes pratiques de développement (tests, CI/CD)</li>
+                <li>Capacité à travailler en équipe et excellentes compétences en communication</li>
+                <li>Anglais technique apprécié</li>
+              </ul>
+            </div>
+            
+            <!-- À propos de l'entreprise -->
+            <div class="bg-white dark:bg-navy-700 rounded-xl shadow-md p-6">
+              <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">À propos de DigitalTech Togo</h2>
+              <p class="text-gray-700 dark:text-gray-300 mb-4">
+                Fondée en 2018, DigitalTech Togo est une entreprise innovante spécialisée dans le développement de solutions digitales pour les entreprises en Afrique de l'Ouest. Nous accompagnons nos clients dans leur transformation numérique avec des applications web et mobiles sur mesure.
+              </p>
+              <p class="text-gray-700 dark:text-gray-300 mb-6">
+                Notre équipe de 50 passionnés travaille dans un environnement dynamique et bienveillant où l'innovation et l'excellence technique sont au cœur de notre culture. Nous offrons des opportunités de croissance professionnelle et un environnement de travail flexible.
+              </p>
+              
+              <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                <div class="bg-gray-50 dark:bg-navy-800 p-4 rounded-lg text-center">
+                  <div class="text-2xl font-bold text-primary dark:text-accent">50+</div>
+                  <div class="text-sm text-gray-600 dark:text-gray-300">Collaborateurs</div>
+                </div>
+                <div class="bg-gray-50 dark:bg-navy-800 p-4 rounded-lg text-center">
+                  <div class="text-2xl font-bold text-primary dark:text-accent">25+</div>
+                  <div class="text-sm text-gray-600 dark:text-gray-300">Clients actifs</div>
+                </div>
+                <div class="bg-gray-50 dark:bg-navy-800 p-4 rounded-lg text-center">
+                  <div class="text-2xl font-bold text-primary dark:text-accent">15+</div>
+                  <div class="text-sm text-gray-600 dark:text-gray-300">Projets en cours</div>
+                </div>
+                <div class="bg-gray-50 dark:bg-navy-800 p-4 rounded-lg text-center">
+                  <div class="text-2xl font-bold text-primary dark:text-accent">2018</div>
+                  <div class="text-sm text-gray-600 dark:text-gray-300">Année de création</div>
+                </div>
+              </div>
+              
+              <h3 class="font-semibold text-gray-900 dark:text-white mb-3">Avantages</h3>
+              <div class="flex flex-wrap gap-2">
+                <span class="tag bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300">Télétravail partiel</span>
+                <span class="tag bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300">Formation continue</span>
+                <span class="tag bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300">Assurance santé</span>
+                <span class="tag bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300">Équipement fourni</span>
+                <span class="tag bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300">Congés payés</span>
+                <span class="tag bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300">Prime de performance</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Colonne latérale -->
+          <div class="lg:col-span-1">
+            <!-- Autres offres de l'entreprise -->
+            <div class="bg-white dark:bg-navy-700 rounded-xl shadow-md p-6 mb-8">
+              <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Autres offres chez DigitalTech Togo</h2>
+              
+              <div class="space-y-4">
+                <!-- Offre 1 -->
+                <a href="#" class="job-highlight block bg-gray-50 hover:bg-gray-100 dark:bg-navy-600 dark:hover:bg-navy-500 p-4 rounded-lg border border-gray-200 dark:border-navy-500">
+                  <h3 class="font-semibold text-gray-900 dark:text-white mb-1">DevOps Engineer</h3>
+                  <div class="flex items-center text-sm text-gray-600 dark:text-gray-300 mb-2">
+                    <i class="fas fa-map-marker-alt mr-2"></i>
+                    <span>Lomé, Togo</span>
+                  </div>
+                  <div class="flex items-center text-sm text-gray-600 dark:text-gray-300">
+                    <i class="fas fa-money-bill-wave mr-2"></i>
+                    <span>350.000 - 500.000 FCFA/mois</span>
+                  </div>
+                </a>
+                
+                <!-- Offre 2 -->
+                <a href="#" class="job-highlight block bg-gray-50 hover:bg-gray-100 dark:bg-navy-600 dark:hover:bg-navy-500 p-4 rounded-lg border border-gray-200 dark:border-navy-500">
+                  <h3 class="font-semibold text-gray-900 dark:text-white mb-1">Product Designer</h3>
+                  <div class="flex items-center text-sm text-gray-600 dark:text-gray-300 mb-2">
+                    <i class="fas fa-map-marker-alt mr-2"></i>
+                    <span>Lomé, Togo</span>
+                  </div>
+                  <div class="flex items-center text-sm text-gray-600 dark:text-gray-300">
+                    <i class="fas fa-money-bill-wave mr-2"></i>
+                    <span>250.000 - 400.000 FCFA/mois</span>
+                  </div>
+                </a>
+                
+                <!-- Offre 3 -->
+                <a href="#" class="job-highlight block bg-gray-50 hover:bg-gray-100 dark:bg-navy-600 dark:hover:bg-navy-500 p-4 rounded-lg border border-gray-200 dark:border-navy-500">
+                  <h3 class="font-semibold text-gray-900 dark:text-white mb-1">Développeur Mobile</h3>
+                  <div class="flex items-center text-sm text-gray-600 dark:text-gray-300 mb-2">
+                    <i class="fas fa-map-marker-alt mr-2"></i>
+                    <span>Lomé, Togo</span>
+                  </div>
+                  <div class="flex items-center text-sm text-gray-600 dark:text-gray-300">
+                    <i class="fas fa-money-bill-wave mr-2"></i>
+                    <span>300.000 - 450.000 FCFA/mois</span>
+                  </div>
+                </a>
+              </div>
+              
+              <a href="#" class="mt-4 inline-flex items-center text-primary dark:text-accent font-medium">
+                Voir toutes les offres
+                <i class="fas fa-arrow-right ml-2 text-xs"></i>
+              </a>
+            </div>
+            
+            <!-- Offres similaires -->
+            <div class="bg-white dark:bg-navy-700 rounded-xl shadow-md p-6">
+              <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Offres similaires</h2>
+              
+              <div class="space-y-4">
+                <!-- Offre 1 -->
+                <a href="#" class="job-highlight block bg-gray-50 hover:bg-gray-100 dark:bg-navy-600 dark:hover:bg-navy-500 p-4 rounded-lg border border-gray-200 dark:border-navy-500">
+                  <div class="flex justify-between">
+                    <h3 class="font-semibold text-gray-900 dark:text-white mb-1">Développeur Fullstack</h3>
+                    <span class="bg-green-100 text-green-800 text-xs font-medium px-2 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">Nouveau</span>
+                  </div>
+                  <p class="text-sm text-gray-600 dark:text-gray-300 mb-2">Tech Solutions Africa</p>
+                  <div class="flex items-center text-sm text-gray-600 dark:text-gray-300">
+                    <i class="fas fa-map-marker-alt mr-2"></i>
+                    <span>Abidjan, Côte d'Ivoire</span>
+                  </div>
+                </a>
+                
+                <!-- Offre 2 -->
+                <a href="#" class="job-highlight block bg-gray-50 hover:bg-gray-100 dark:bg-navy-600 dark:hover:bg-navy-500 p-4 rounded-lg border border-gray-200 dark:border-navy-500">
+                  <div class="flex justify-between">
+                    <h3 class="font-semibold text-gray-900 dark:text-white mb-1">Ingénieur Fullstack</h3>
+                    <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2 py-0.5 rounded-full dark:bg-blue-900 dark:text-blue-300">Urgent</span>
+                  </div>
+                  <p class="text-sm text-gray-600 dark:text-gray-300 mb-2">Innovate Group</p>
+                  <div class="flex items-center text-sm text-gray-600 dark:text-gray-300">
+                    <i class="fas fa-map-marker-alt mr-2"></i>
+                    <span>Dakar, Sénégal</span>
+                  </div>
+                </a>
+                
+                <!-- Offre 3 -->
+                <a href="#" class="job-highlight block bg-gray-50 hover:bg-gray-100 dark:bg-navy-600 dark:hover:bg-navy-500 p-4 rounded-lg border border-gray-200 dark:border-navy-500">
+                  <h3 class="font-semibold text-gray-900 dark:text-white mb-1">Développeur JS Senior</h3>
+                  <p class="text-sm text-gray-600 dark:text-gray-300 mb-2">Web Experts</p>
+                  <div class="flex items-center text-sm text-gray-600 dark:text-gray-300">
+                    <i class="fas fa-map-marker-alt mr-2"></i>
+                    <span>Remote</span>
+                  </div>
+                </a>
+              </div>
+              
+              <a href="#" class="mt-4 inline-flex items-center text-primary dark:text-accent font-medium">
+                Plus d'offres similaires
+                <i class="fas fa-arrow-right ml-2 text-xs"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+{% endblock %}

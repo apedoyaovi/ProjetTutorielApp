@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<div class="min-h-screen flex items-center justify-center bg-gray-100">
+  <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+    <h1 class="text-2xl font-semibold text-center mb-6">
+      Finalisez votre inscription
+    </h1>
+
+    <p class="text-sm text-gray-600 text-center mb-4">
+      Vous êtes connecté avec {{ provider.name }}. Veuillez compléter votre profil.
+    </p>
+
+    <form method="post" action="{% url 'socialaccount_signup' %}">
+      {% csrf_token %}
+      {{ form.as_p }}
+
+      <button type="submit"
+              class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        Créer mon compte
+      </button>
+    </form>
+  </div>
+</div>
+{% endblock %}

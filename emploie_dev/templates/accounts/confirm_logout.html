@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="my-32 px-4">
+  <div class="max-w-md mx-auto p-6 bg-white shadow-lg rounded-lg text-center">
+    <h2 class="text-xl font-semibold mb-4">Voulez-vous vraiment vous déconnecter ?</h2>
+    
+    <form method="POST" action="{% url 'logout' %}">
+      {% csrf_token %}
+      <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">
+        Oui, me déconnecter
+      </button>
+      <a href="{% url 'home' %}" class="ml-4 text-blue-500 hover:underline">
+        Annuler
+      </a>
+    </form>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,247 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+ <!-- Formulaire d'ajout d'offre -->
+    <main class="flex-grow py-8">
+      <div class="max-w-4xl mx-auto px-4">
+        <div class="text-center mb-10">
+          <h1 class="text-2xl md:text-3xl font-bold text-gray-800 dark:text-white mb-3">Ajouter une Offre d'Emploi</h1>
+          <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+            Remplissez ce formulaire pour publier une nouvelle offre d'emploi sur notre plateforme
+          </p>
+        </div>
+        
+        <!-- Barre de progression -->
+        <div class="flex items-center justify-between mb-10">
+          <div class="flex flex-col items-center w-1/4">
+            <div class="step-indicator active">1</div>
+            <span class="step-label active">Informations</span>
+          </div>
+          <div class="step-connector active"></div>
+          <div class="flex flex-col items-center w-1/4">
+            <div class="step-indicator">2</div>
+            <span class="step-label">Détails</span>
+          </div>
+          <div class="step-connector"></div>
+          <div class="flex flex-col items-center w-1/4">
+            <div class="step-indicator">3</div>
+            <span class="step-label">Entreprise</span>
+          </div>
+          <div class="step-connector"></div>
+          <div class="flex flex-col items-center w-1/4">
+            <div class="step-indicator">4</div>
+            <span class="step-label">Confirmation</span>
+          </div>
+        </div>
+        
+        <form id="offer-form" class="bg-white dark:bg-navy-700 rounded-xl shadow-lg p-6 md:p-8 form-section">
+          <!-- Étape 1: Informations de base -->
+          <div id="step1" class="form-step active">
+            <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-6 pb-2 border-b border-gray-200 dark:border-navy-600">Informations de base</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+              <div>
+                <label for="job-title" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Titre du poste *</label>
+                <input type="text" id="job-title" name="job-title" required class="w-full px-4 py-2 border border-gray-300 dark:border-navy-600 rounded-lg focus:ring-2 focus:ring-primary dark:focus:ring-accent focus:outline-none bg-white dark:bg-navy-800 text-gray-900 dark:text-white" placeholder="Ex: Développeur Fullstack">
+              </div>
+              
+              <div>
+                <label for="company" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Entreprise *</label>
+                <input type="text" id="company" name="company" required class="w-full px-4 py-2 border border-gray-300 dark:border-navy-600 rounded-lg focus:ring-2 focus:ring-primary dark:focus:ring-accent focus:outline-none bg-white dark:bg-navy-800 text-gray-900 dark:text-white" placeholder="Ex: DigitalTech Togo">
+              </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+              <div>
+                <label for="location" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Localisation *</label>
+                <input type="text" id="location" name="location" required class="w-full px-4 py-2 border border-gray-300 dark:border-navy-600 rounded-lg focus:ring-2 focus:ring-primary dark:focus:ring-accent focus:outline-none bg-white dark:bg-navy-800 text-gray-900 dark:text-white" placeholder="Ex: Lomé, Togo">
+                <div class="flex items-center mt-2">
+                  <input type="checkbox" id="remote" name="remote" class="mr-2 rounded text-primary dark:text-accent focus:ring-primary dark:focus:ring-accent">
+                  <label for="remote" class="text-sm text-gray-700 dark:text-gray-300">Télétravail possible</label>
+                </div>
+              </div>
+              
+              <div>
+                <label for="contract-type" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Type de contrat *</label>
+                <select id="contract-type" name="contract-type" required class="w-full px-4 py-2 border border-gray-300 dark:border-navy-600 rounded-lg focus:ring-2 focus:ring-primary dark:focus:ring-accent focus:outline-none bg-white dark:bg-navy-800 text-gray-900 dark:text-white">
+                  <option value="">Sélectionnez un type</option>
+                  <option value="cdi">CDI</option>
+                  <option value="cdd">CDD</option>
+                  <option value="stage">Stage</option>
+                  <option value="freelance">Freelance</option>
+                  <option value="alternance">Alternance</option>
+                </select>
+              </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+              <div>
+                <label for="salary-min" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Salaire min (FCFA/mois)</label>
+                <input type="number" id="salary-min" name="salary-min" class="w-full px-4 py-2 border border-gray-300 dark:border-navy-600 rounded-lg focus:ring-2 focus:ring-primary dark:focus:ring-accent focus:outline-none bg-white dark:bg-navy-800 text-gray-900 dark:text-white" placeholder="Ex: 300000">
+              </div>
+              
+              <div>
+                <label for="salary-max" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Salaire max (FCFA/mois)</label>
+                <input type="number" id="salary-max" name="salary-max" class="w-full px-4 py-2 border border-gray-300 dark:border-navy-600 rounded-lg focus:ring-2 focus:ring-primary dark:focus:ring-accent focus:outline-none bg-white dark:bg-navy-800 text-gray-900 dark:text-white" placeholder="Ex: 450000">
+              </div>
+            </div>
+            
+            <div class="mb-6">
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Statut de l'offre</label>
+              <div class="flex flex-wrap gap-3">
+                <div class="flex items-center">
+                  <input type="radio" id="status-new" name="status" value="new" class="mr-2 rounded-full text-primary dark:text-accent focus:ring-primary dark:focus:ring-accent" checked>
+                  <label for="status-new" class="text-sm text-gray-700 dark:text-gray-300">Nouveau</label>
+                </div>
+                <div class="flex items-center">
+                  <input type="radio" id="status-urgent" name="status" value="urgent" class="mr-2 rounded-full text-primary dark:text-accent focus:ring-primary dark:focus:ring-accent">
+                  <label for="status-urgent" class="text-sm text-gray-700 dark:text-gray-300">Urgent</label>
+                </div>
+                <div class="flex items-center">
+                  <input type="radio" id="status-remote" name="status" value="remote" class="mr-2 rounded-full text-primary dark:text-accent focus:ring-primary dark:focus:ring-accent">
+                  <label for="status-remote" class="text-sm text-gray-700 dark:text-gray-300">Télétravail</label>
+                </div>
+              </div>
+            </div>
+            
+            <div class="flex justify-end mt-8">
+              <button type="button" class="next-step bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-lg font-medium shadow-md transition duration-300">
+                Suivant <i class="fas fa-arrow-right ml-2"></i>
+              </button>
+            </div>
+          </div>
+          
+          <!-- Étape 2: Détails du poste -->
+          <div id="step2" class="form-step">
+            <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-6 pb-2 border-b border-gray-200 dark:border-navy-600">Détails du poste</h2>
+            
+            <div class="mb-6">
+              <label for="job-description" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Description du poste *</label>
+              <textarea id="job-description" name="job-description" rows="4" required class="w-full px-4 py-2 border border-gray-300 dark:border-navy-600 rounded-lg focus:ring-2 focus:ring-primary dark:focus:ring-accent focus:outline-none bg-white dark:bg-navy-800 text-gray-900 dark:text-white" placeholder="Décrivez les responsabilités et les objectifs du poste..."></textarea>
+            </div>
+            
+            <div class="mb-6">
+              <label for="responsibilities" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Missions et responsabilités *</label>
+              <textarea id="responsibilities" name="responsibilities" rows="4" required class="w-full px-4 py-2 border border-gray-300 dark:border-navy-600 rounded-lg focus:ring-2 focus:ring-primary dark:focus:ring-accent focus:outline-none bg-white dark:bg-navy-800 text-gray-900 dark:text-white" placeholder="Listez les principales missions et responsabilités..."></textarea>
+            </div>
+            
+            <div class="mb-6">
+              <label for="profile" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Profil recherché *</label>
+              <textarea id="profile" name="profile" rows="4" required class="w-full px-4 py-2 border border-gray-300 dark:border-navy-600 rounded-lg focus:ring-2 focus:ring-primary dark:focus:ring-accent focus:outline-none bg-white dark:bg-navy-800 text-gray-900 dark:text-white" placeholder="Décrivez le profil idéal pour ce poste..."></textarea>
+            </div>
+            
+            <div class="mb-6">
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Compétences requises *</label>
+              <div id="skills-container" class="tag-input-container">
+                <!-- Les tags seront ajoutés ici dynamiquement -->
+                <input type="text" id="skills-input" class="tag-input" placeholder="Ajoutez des compétences (ex: React, Node.js)">
+              </div>
+              <div id="skills-tags" class="flex flex-wrap gap-2 mt-2"></div>
+            </div>
+            
+            <div class="flex justify-between mt-8">
+              <button type="button" class="prev-step bg-gray-100 hover:bg-gray-200 dark:bg-navy-600 dark:hover:bg-navy-500 text-gray-800 dark:text-white px-6 py-3 rounded-lg font-medium transition duration-300">
+                <i class="fas fa-arrow-left mr-2"></i> Précédent
+              </button>
+              <button type="button" class="next-step bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-lg font-medium shadow-md transition duration-300">
+                Suivant <i class="fas fa-arrow-right ml-2"></i>
+              </button>
+            </div>
+          </div>
+          
+          <!-- Étape 3: À propos de l'entreprise -->
+          <div id="step3" class="form-step">
+            <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-6 pb-2 border-b border-gray-200 dark:border-navy-600">À propos de l'entreprise</h2>
+            
+            <div class="mb-6">
+              <label for="about-company" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Description de l'entreprise *</label>
+              <textarea id="about-company" name="about-company" rows="4" required class="w-full px-4 py-2 border border-gray-300 dark:border-navy-600 rounded-lg focus:ring-2 focus:ring-primary dark:focus:ring-accent focus:outline-none bg-white dark:bg-navy-800 text-gray-900 dark:text-white" placeholder="Présentez votre entreprise..."></textarea>
+            </div>
+            
+            <div class="mb-6">
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Avantages proposés</label>
+              <div id="benefits-container" class="tag-input-container">
+                <!-- Les tags seront ajoutés ici dynamiquement -->
+                <input type="text" id="benefits-input" class="tag-input" placeholder="Ajoutez des avantages (ex: Télétravail, Formation)">
+              </div>
+              <div id="benefits-tags" class="flex flex-wrap gap-2 mt-2"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+              <div>
+                <label for="website" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Site web</label>
+                <input type="url" id="website" name="website" class="w-full px-4 py-2 border border-gray-300 dark:border-navy-600 rounded-lg focus:ring-2 focus:ring-primary dark:focus:ring-accent focus:outline-none bg-white dark:bg-navy-800 text-gray-900 dark:text-white" placeholder="https://votreentreprise.com">
+              </div>
+              
+              <div>
+                <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Email de contact *</label>
+                <input type="email" id="email" name="email" required class="w-full px-4 py-2 border border-gray-300 dark:border-navy-600 rounded-lg focus:ring-2 focus:ring-primary dark:focus:ring-accent focus:outline-none bg-white dark:bg-navy-800 text-gray-900 dark:text-white" placeholder="contact@entreprise.com">
+              </div>
+            </div>
+            
+            <div class="flex justify-between mt-8">
+              <button type="button" class="prev-step bg-gray-100 hover:bg-gray-200 dark:bg-navy-600 dark:hover:bg-navy-500 text-gray-800 dark:text-white px-6 py-3 rounded-lg font-medium transition duration-300">
+                <i class="fas fa-arrow-left mr-2"></i> Précédent
+              </button>
+              <button type="button" class="next-step bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-lg font-medium shadow-md transition duration-300">
+                Suivant <i class="fas fa-arrow-right ml-2"></i>
+              </button>
+            </div>
+          </div>
+          
+          <!-- Étape 4: Confirmation -->
+          <div id="step4" class="form-step">
+            <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-6 pb-2 border-b border-gray-200 dark:border-navy-600">Confirmation</h2>
+            
+            <div class="bg-gray-50 dark:bg-navy-800 rounded-lg p-6 mb-6">
+              <div class="text-center mb-4">
+                <i class="fas fa-check-circle text-5xl text-green-500 mb-3"></i>
+                <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Votre offre est prête !</h3>
+                <p class="text-gray-600 dark:text-gray-300 mt-2">Vérifiez les informations avant de publier</p>
+              </div>
+              
+              <div class="space-y-4">
+                <div class="flex justify-between border-b border-gray-200 dark:border-navy-700 pb-2">
+                  <span class="text-gray-600 dark:text-gray-300">Titre du poste</span>
+                  <span class="font-medium text-gray-900 dark:text-white" id="confirm-title">Développeur Fullstack</span>
+                </div>
+                <div class="flex justify-between border-b border-gray-200 dark:border-navy-700 pb-2">
+                  <span class="text-gray-600 dark:text-gray-300">Entreprise</span>
+                  <span class="font-medium text-gray-900 dark:text-white" id="confirm-company">DigitalTech Togo</span>
+                </div>
+                <div class="flex justify-between border-b border-gray-200 dark:border-navy-700 pb-2">
+                  <span class="text-gray-600 dark:text-gray-300">Localisation</span>
+                  <span class="font-medium text-gray-900 dark:text-white" id="confirm-location">Lomé, Togo</span>
+                </div>
+                <div class="flex justify-between border-b border-gray-200 dark:border-navy-700 pb-2">
+                  <span class="text-gray-600 dark:text-gray-300">Type de contrat</span>
+                  <span class="font-medium text-gray-900 dark:text-white" id="confirm-contract">CDI</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-gray-600 dark:text-gray-300">Compétences</span>
+                  <span class="font-medium text-gray-900 dark:text-white" id="confirm-skills">React, Node.js, MongoDB</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="mb-6">
+              <div class="flex items-center">
+                <input type="checkbox" id="terms" name="terms" required class="mr-2 rounded text-primary dark:text-accent focus:ring-primary dark:focus:ring-accent">
+                <label for="terms" class="text-sm text-gray-700 dark:text-gray-300">J'accepte les <a href="#" class="text-primary dark:text-accent hover:underline">conditions d'utilisation</a> et la <a href="#" class="text-primary dark:text-accent hover:underline">politique de confidentialité</a></label>
+              </div>
+            </div>
+            
+            <div class="flex justify-between mt-8">
+              <button type="button" class="prev-step bg-gray-100 hover:bg-gray-200 dark:bg-navy-600 dark:hover:bg-navy-500 text-gray-800 dark:text-white px-6 py-3 rounded-lg font-medium transition duration-300">
+                <i class="fas fa-arrow-left mr-2"></i> Précédent
+              </button>
+              <button type="submit" class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-medium shadow-md transition duration-300">
+                <i class="fas fa-paper-plane mr-2"></i> Publier l'offre
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </main>
+{% endblock %}

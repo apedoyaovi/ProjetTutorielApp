@@ -1,0 +1,388 @@
+
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      background-color: #F8FAFC;
+    }
+    
+    .dark body {
+      background-color: #0B1120;
+    }
+    
+    .tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 500;
+      padding: 0.25rem 0.5rem;
+      border-radius: 9999px;
+    }
+    
+    .mobile-menu {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+    }
+    
+    .mobile-menu.open {
+      max-height: 300px;
+    }
+    
+    .form-section {
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+    
+    .dark .form-section {
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+    }
+    
+    .tag-input-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      align-items: center;
+      padding: 0.5rem;
+      border: 1px solid #d1d5db;
+      border-radius: 0.5rem;
+      background-color: white;
+    }
+    
+    .dark .tag-input-container {
+      border-color: #4b5563;
+      background-color: #1e293b;
+    }
+    
+    .tag-item {
+      display: inline-flex;
+      align-items: center;
+      background-color: #e0e7ff;
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.875rem;
+      color: #4f46e5;
+    }
+    
+    .dark .tag-item {
+      background-color: #3730a3;
+      color: #c7d2fe;
+    }
+    
+    .tag-remove {
+      margin-left: 0.5rem;
+      cursor: pointer;
+      color: #818cf8;
+    }
+    
+    .tag-input {
+      flex: 1;
+      min-width: 100px;
+      border: none;
+      outline: none;
+      padding: 0.5rem 0;
+      background: transparent;
+    }
+    
+    .dark .tag-input {
+      color: #f3f4f6;
+    }
+    
+    .tag-input:focus {
+      outline: none;
+    }
+    
+    .form-step {
+      display: none;
+    }
+    
+    .form-step.active {
+      display: block;
+      animation: fadeIn 0.5s ease;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .step-indicator {
+      width: 2rem;
+      height: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 9999px;
+      background-color: #e5e7eb;
+      font-weight: 600;
+      color: #6b7280;
+    }
+    
+    .step-indicator.active {
+      background-color: #4f46e5;
+      color: white;
+    }
+    
+    .dark .step-indicator {
+      background-color: #334155;
+      color: #cbd5e1;
+    }
+    
+    .step-label {
+      margin-top: 0.5rem;
+      font-size: 0.75rem;
+      color: #6b7280;
+    }
+    
+    .dark .step-label {
+      color: #9ca3af;
+    }
+    
+    .step-label.active {
+      color: #4f46e5;
+      font-weight: 500;
+    }
+    
+    .dark .step-label.active {
+      color: #818cf8;
+    }
+    
+    .step-connector {
+      flex: 1;
+      height: 2px;
+      background-color: #e5e7eb;
+      margin: 0 0.5rem;
+    }
+    
+    .dark .step-connector {
+      background-color: #334155;
+    }
+    
+    .step-connector.active {
+      background-color: #4f46e5;
+    }
+    
+    .dark .step-connector.active {
+      background-color: #818cf8;
+    }
+
+    .dark .progress-value {
+      background-color: #7C3AED;
+    }
+
+    .form-section:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+    
+    .dark .form-section:hover {
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.1);
+    }
+    
+    .skill-badge {
+      transition: all 0.2s ease;
+    }
+    
+    .skill-badge:hover {
+      transform: scale(1.05);
+    }
+    
+    .upload-area {
+      border: 2px dashed #D1D5DB;
+      border-radius: 0.5rem;
+      transition: all 0.3s ease;
+    }
+    
+    .dark .upload-area {
+      border-color: #4B5563;
+    }
+    
+    .upload-area:hover, .upload-area.drag-over {
+      border-color: #4F46E5;
+      background-color: #F5F7FF;
+    }
+    
+    .dark .upload-area:hover, .dark .upload-area.drag-over {
+      border-color: #7C3AED;
+      background-color: #1E1B4B;
+    }
+    
+    .progress-bar {
+      position: relative;
+      height: 8px;
+      border-radius: 4px;
+      background-color: #E5E7EB;
+    }
+    
+    .dark .progress-bar {
+      background-color: #374151;
+    }
+    
+    .progress-value {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      border-radius: 4px;
+      background-color: #4F46E5;
+    }
+    
+    /* Animation de chargement */
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+    .animate-pulse {
+      animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+    .tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 500;
+      padding: 0.25rem 0.5rem;
+      border-radius: 9999px;
+    }
+    
+    .job-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .job-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+    }
+    
+    .dark .job-card:hover {
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+    }
+    
+    .profile-card {
+      transition: transform 0.3s ease;
+    }
+    
+    .profile-card:hover {
+      transform: translateY(-3px);
+    }
+    
+    .hero-gradient {
+      background: linear-gradient(135deg, #7C3AED 0%, #4F46E5 50%, #4338CA 100%);
+    }
+    
+    .mobile-menu {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+    }
+    
+    .mobile-menu.open {
+      max-height: 300px;
+    }
+
+     .tab-active {
+      position: relative;
+      color: #4F46E5;
+      font-weight: 600;
+    }
+    
+    .tab-active:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: #4F46E5;
+      border-radius: 3px 3px 0 0;
+    }
+    
+    .dark .tab-active {
+      color: #7C3AED;
+    }
+    
+    .dark .tab-active:after {
+      background: #7C3AED;
+    }
+    
+    .progress-bar {
+      position: relative;
+      height: 8px;
+      border-radius: 4px;
+      background-color: #E5E7EB;
+    }
+    
+    .dark .progress-bar {
+      background-color: #374151;
+    }
+    
+    .progress-value {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      border-radius: 4px;
+      background-color: #4F46E5;
+    }
+    
+    .dark .progress-value {
+      background-color: #7C3AED;
+    }
+    
+    .contact-card {
+      transition: all 0.3s ease;
+    }
+    
+    .contact-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+    }
+    
+    .dark .contact-card:hover {
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+    }
+    
+    .experience-item {
+      position: relative;
+      padding-left: 24px;
+    }
+    
+    .experience-item:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #4F46E5;
+    }
+    
+    .dark .experience-item:before {
+      background: #7C3AED;
+    }
+    
+    .experience-item:after {
+      content: '';
+      position: absolute;
+      left: 5px;
+      top: 20px;
+      bottom: 0;
+      width: 2px;
+      background: #E5E7EB;
+    }
+    
+    .dark .experience-item:after {
+      background: #374151;
+    }
+    
+    .last-item:after {
+      display: none;
+    }
+    
+    /* Correction pour le décalage d'ancrage */
+    :target:before {
+      content: "";
+      display: block;
+      height: 80px; /* Hauteur de la navbar */
+      margin: -80px 0 0; /* Valeur négative de la hauteur */
+    }
